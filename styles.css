@@ -2,7 +2,7 @@ html, body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: whitesmoke;
+    background: white;
 }
 
 header{
@@ -58,6 +58,8 @@ footer {
 #slider{
     overflow: hidden;
     object-fit: cover;
+    width: 80%;
+    margin: auto;
 }
 #slider figure{
     position: relative;
@@ -102,16 +104,22 @@ footer {
     }
 }
 
-.card-imagem{
-    width: 15rem;
-    margin: auto;
-    padding: 1vh;
-}
-
 .card{
     height: 23rem;
+    margin-top: 2rem;
 }
 
-.card-deck{
-    justify-content: center;
+.container-deck{
+    margin: auto;
+    width: 80%;
+    display: flex;
+}
+
+.card-deck {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
 }

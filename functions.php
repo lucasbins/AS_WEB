@@ -18,8 +18,8 @@
 
 		if(mysqli_num_rows ($result) > 0 ){
 			$_SESSION['login'] = $login;
-			$_SESSION['senha'] = $senha;
-			header('location: pagina.php');
+			$_SESSION['idusuario'] = $iduser;
+			header('location: index.php');
 		}else{
   			session_destroy();
   			header('location: login.php?error=1');
@@ -29,7 +29,7 @@
 	if(isset($_GET['logout'])){
 		session_unset();
 		session_destroy();
-		header('location: login.php');
+		header('location: index.php');
 	}
 
 	
