@@ -15,7 +15,7 @@ header{
 
 main {
     background: whitesmoke;
-    align-items: center;
+    justify-content: center;
     margin: auto;
     padding: 2rem;
 }
@@ -27,6 +27,7 @@ footer {
     color: white;
     text-align: center;
     padding: 2rem;
+    align-items: center;
 
 }
 
@@ -99,4 +100,18 @@ footer {
     100% {
         left: -400%;
     }
+}
+
+.card-imagem{
+    width: 15rem;
+    margin: auto;
+    padding: 1vh;
+}
+
+.card{
+    height: 23rem;
+}
+
+.card-deck{
+    justify-content: center;
 }
