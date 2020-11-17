@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once('functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,6 @@
     <title>Cursos WEB</title>
 
 </head>
-
 <body>
     <div>
         <header class="container-flex">
@@ -44,46 +43,10 @@
                     <?php geracard(); ?>
                 </div>
             </div>
-
         </main>
         <footer class="container-fluid">
             <h5>COPYRIGHT Lucas Bins - Avaliação Semestral - Programação WEB - ULBRA 2020</h5>
         </footer>
     </div>
 </body>
-
 </html>
-
-<?php
-
-function geracard()
-{
-
-    $conn = new mysqli("localhost", "root", "", "webcursos");
-
-    $result = $conn->query("SELECT * FROM tb_cursos");
-
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="card" style="min-width: 12rem; max-width: 18rem; ">
-                    <img src="assets/' . $row["img"] . '" class="card-imagem" alt="..." ">
-                    <div class="card-body">
-                        <h5 class="card-title">' . $row["nomecurso"] . '</h5>
-                        <p class="card-text">' . $row["descriçao"] . '</p>
-                        <form action="php/functions.php" method="GET">
-                            <input class="btn btn-primary" type="submit" value="Inscrever-se" style="position: absolute; bottom:2vh; background: indigo; border: none;">
-                        </form>
-                    </div>
-            </div>';
-    }
-}
-
-function login(){
-
-    if(!isset($_SESSION['login'])){
-        echo '<a href="Login.php">Login</a>';
-    }else{
-        echo '<a href="">Meus cursos Conta</a>';
-        echo '<a href="functions.php?logout=1">Logout</a>';
-    }
-}
-?>
