@@ -29,16 +29,7 @@ require_once('functions.php');
     </header>
     <main>
         <div class="mx-auto" style="width:80%">
-            <h1 style="text-align:center">Curso: <?php geranome(); ?></h1>
-            <hr class="hr3">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php geracurso(); ?>" allowfullscreen></iframe>
-            </div>
-            <hr class="hr3">
-            <button type="submit" value="entrar" class="btn btn-primary" style="float:right;background:indigo;border:none;">Certificado</button>
-            <h2>Descrição:</h2>
-            <p><?php geradescricao(); ?></p>
-            <hr class="hr3">
+            <?php geracurso();?>
         </div>
     </main>
     <footer class="container-fluid">

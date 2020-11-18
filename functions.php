@@ -69,58 +69,50 @@ function connect(){
 
 function geracurso()
 {
-	$conn = connect();
 
-	$curso = $_GET["curso"];
+	if (!isset($_SESSION['login'])) {
+		echo '<p>Voce precisa estar logado</p>';
+	} else {
 
-	$result = $conn->query("SELECT url FROM tb_cursos WHERE idcurso = $curso");
+		$conn = connect();
 
-	$row = mysqli_fetch_assoc($result);
+		$curso = $_GET["curso"];
 
-	echo $row["url"];
+		$result = $conn->query("SELECT * FROM tb_cursos WHERE idcurso = $curso");
 
-}
-
-function geranome(){
-	$conn = connect();
-
-	$curso = $_GET["curso"];
-
-	$result = $conn->query("SELECT nomecurso FROM tb_cursos WHERE idcurso = $curso");
-
-	$row = mysqli_fetch_assoc($result);
-
-	echo $row["nomecurso"];
-}
-
-function geradescricao()
-{
-	$conn = connect();
-
-	$curso = $_GET["curso"];
-
-	$result = $conn->query("SELECT descriçao FROM tb_cursos WHERE idcurso = $curso");
-
-	$row = mysqli_fetch_assoc($result);
-
-	echo $row["descriçao"];
+		while($row = mysqli_fetch_assoc($result)){
+			echo '<h1 style="text-align:center">Curso: '.$row["nomecurso"].'</h1>
+            <hr class="hr3">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/'.$row["url"].'" allowfullscreen></iframe>
+            </div>
+            <hr class="hr3">
+            <button type="submit" value="entrar" class="btn btn-primary" style="float:right;background:indigo;border:none;">Certificado</button>
+            <h2>Descrição:</h2>
+            <p>'.$row["descriçao"].'</p>
+            <hr class="hr3">';
+		}
+	}
 }
 
 function geraconta(){
 
 	$conn = connect();
 
-	$login = $_SESSION['login'];
+	if(!isset($_SESSION['login'])){
+		echo '<p>Voce precisa estar logado</p>';
+	}else{
+		$login = $_SESSION['login'];
 
-	$result = $conn->query("SELECT * FROM `tb_users` WHERE `login` = '$login'");
+		$result = $conn->query("SELECT * FROM `tb_users` WHERE `login` = '$login'");
 
-	while($row = mysqli_fetch_assoc($result)){
-		echo '<dl class="row">
+		while ($row = mysqli_fetch_assoc($result)) {
+			echo '<dl class="row">
                 <dt class="col-sm-3">Nome: </dt>
-                <dd class="col-sm-9">'.$row["nome"]. '</dd>
+                <dd class="col-sm-9">' . $row["nome"] . '</dd>
 
                 <dt class="col-sm-3">E-mail: </dt>
-                <dd class="col-sm-9">' . $row["email"]. '</dd>
+                <dd class="col-sm-9">' . $row["email"] . '</dd>
 
                 <dt class="col-sm-3">Telefone: </dt>
 				<dd class="col-sm-9">' . $row["fone"] . '</dd>
@@ -128,8 +120,8 @@ function geraconta(){
 				<dt class="col-sm-3">Data de Nascimento: </dt>
                 <dd class="col-sm-9">' . $row["nasc"] . '</dd>
             </dl>';
+		}
 	}
-
 }
 
 ?>
