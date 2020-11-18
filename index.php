@@ -1,5 +1,5 @@
 <?php
-    require_once('functions.php');
+require_once('functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
     <title>Cursos WEB</title>
 
 </head>
+
 <body>
     <div>
         <header class="container-flex">
@@ -30,9 +31,9 @@
         <main>
             <div id="slider">
                 <figure>
-                    <a href=""><img src="assets\1.png"></a>
-                    <a href=""><img src="assets\2.png"></a>
-                    <a href=""><img src="assets\3.png"></a>
+                    <a href="curso.php?curso=1"><img src="assets\1.png"></a>
+                    <a href="curso.php?curso=2"><img src="assets\2.png"></a>
+                    <a href="curso.php?curso=3"><img src="assets\3.png"></a>
                     <a href=""><img src="assets\4.png"></a>
                     <a href=""><img src="assets\1.png"></a>
                 </figure>
@@ -49,4 +50,5 @@
         </footer>
     </div>
 </body>
+
 </html>
