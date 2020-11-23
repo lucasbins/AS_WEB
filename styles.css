@@ -36,23 +36,7 @@ footer {
     float: left;
 }
 
-.menu{
-    height: 5vh;
-}
 
-.menu a{
-    float: right;
-    display: block;
-    color: #ffffff;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-.menu a:hover{
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-}
 
 #slider{
     overflow: hidden;
@@ -113,6 +97,7 @@ footer {
     width: 80%;
     display: flex;
 }
+
 
 #login label{
     color: white;

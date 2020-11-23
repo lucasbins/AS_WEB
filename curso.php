@@ -21,15 +21,15 @@ require_once('functions.php');
                 <h1>Cursos PHP</h1>
             </div>
             <div class="col-4">
-                <div class="menu">
-                    <?php login(); ?>
+                <div >
+                    <?php menu(); ?>
                 </div>
             </div>
         </div>
     </header>
     <main>
         <div class="mx-auto" style="width:80%">
-            <?php geracurso();?>
+            <?php geracurso(); ?>
         </div>
     </main>
     <footer class="container-fluid">

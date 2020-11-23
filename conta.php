@@ -21,8 +21,8 @@ require_once('functions.php');
                 <h1>Cursos PHP</h1>
             </div>
             <div class="col-4">
-                <div class="menu">
-                    <?php login(); ?>
+                <div >
+                    <?php menu(); ?>
                 </div>
             </div>
         </div>
@@ -33,7 +33,8 @@ require_once('functions.php');
             <div style="background:white; border-radius:1rem;padding:3rem;">
                 <?php geraconta(); ?>
             </div>
-            <!-- <h1 class="display-4" style="color:indigo;">Cursos Inscritos</h1> -->
+            <h1 class="display-4" style="color:indigo;">Cursos Inscritos</h1>
+                <?php geracardconta(); ?>
         </div>
     </main>
     <footer class="container-fluid">

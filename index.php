@@ -16,15 +16,13 @@ require_once('functions.php');
 
 <body>
     <div>
-        <header class="container-flex">
-            <div class="row">
-                <div class="col">
+        <header>
+            <div>
+                <div>
                     <h1>Cursos PHP</h1>
                 </div>
-                <div class="col-4">
-                    <div class="menu">
-                        <?php login(); ?>
-                    </div>
+                <div>
+                    <?php menu(); ?>
                 </div>
             </div>
         </header>
