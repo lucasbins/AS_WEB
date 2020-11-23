@@ -14,8 +14,13 @@
 			while($row = mysqli_fetch_assoc($result)){
 				$_SESSION['login'] = $login;
 				$_SESSION['idusuario'] = $row['idusuario'];
+		}
+			if($login == "admin"){
+				header('location: admin.php');
+			}else{
+				header('location: index.php');
 			}
-			header('location: index.php');
+			
 		}else{
   			session_destroy();
   			header('location: login.php?error=1');
@@ -77,15 +82,17 @@ function menu()
 {
 
 	if (!isset($_SESSION['login'])) {
-		echo '<a href="Login.php">Login</a>';
-		echo '<a href="index.php">Home</a>';
+		echo '<ul>
+				<li><a href="Login.php">Login</a></li>
+				<li><a href="index.php">Home</a></li>
+			</ul>';
 	} else {
-		echo '	<div class="">
-					<a href="functions.php?logout=1">Logout</a>
-					<a href="conta.php">Minha Conta</a>
-					<a href="index.php">Home</a>
-					Bem-Vindo ' . $_SESSION["login"] . '
-				</div>';
+		echo '<ul>
+				<li><a href="functions.php?logout=1">Logout</a></li>
+				<li><a href="conta.php">Minha Conta</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><p class="text">Bem-Vindo ' . $_SESSION["login"] . '</p></li>
+			</ul>';
 	}
 }
 
@@ -119,7 +126,6 @@ function geracurso()
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/'.$row["url"].'" allowfullscreen></iframe>
             </div>
             <hr class="hr3">
-            <button type="submit" value="entrar" class="btn btn-primary" style="float:right;background:indigo;border:none;">Certificado</button>
             <h2>Descrição:</h2>
             <p>'.$row["descriçao"].'</p>
             <hr class="hr3">';
@@ -183,6 +189,43 @@ function geracardconta(){
 		echo 	'<div class="alert alert-light" role="alert">Você nao possui nenhum curso cadastrado :(</div>';
 	}
 	
+}
+
+function table_curso(){
+
+	$conn = connect();
+
+	$result = $conn->query("SELECT * FROM tb_cursos");
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		$codcurso = $row["idcurso"];
+		$count = $conn->query("SELECT COUNT(fk_user) AS total FROM tb_user_curso WHERE fk_curso = $codcurso");
+
+		$total = mysqli_fetch_assoc($count);
+
+		echo '	<tr>
+					<th scope="row">'. $row["idcurso"].'</th>
+                		<td>'.$row["nomecurso"].'</td>
+                		<td>'.$row["descriçao"].'</td>
+                		<td>'.$total["total"]. '</td>
+						<td><a href="admin.php?delete=' . $row["idcurso"] . '"class="close" onclick="return checkDelete()""><span aria-hidden="true">&times;</span></a>
+						</td>
+				</tr>';
+	}
+}
+
+function deletecurso(){
+	$conn = connect();
+
+	$delete = $_GET['delete'];
+
+	$sql = "DELETE FROM tb_cursos WHERE idcurso = $delete";
+
+	if ($conn->query($sql) === TRUE) {
+		header('location: admin.php');
+	} else {
+		echo "Error deleting record: " . $conn->error;
+	}
 }
 
 ?>
