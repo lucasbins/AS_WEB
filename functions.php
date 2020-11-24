@@ -41,8 +41,8 @@ function geracard()
 	$result = $conn->query("SELECT * FROM tb_cursos");
 
 	while ($row = mysqli_fetch_assoc($result)) {
-		echo '<div class="card" style="min-width: 12rem; max-width: 18rem; ">
-                    <img src="assets/' . $row["img"] . '" class="card-imagem" alt="..." ">
+		echo '<div class="card" style="min-width: 12rem; max-width: 15rem;padding:1rem; ">
+                    <img src="assets/' . $row["img"] . '" class="card-imagem" alt="'.$row["descriçao"].'" style="max-height:10rem;max-width:18rem;"">
                     <div class="card-body">
                         <h5 class="card-title">' . $row["nomecurso"] . '</h5>
 						<p class="card-text">' . $row["descriçao"] . '</p>  
@@ -87,9 +87,15 @@ function menu()
 				<li><a href="index.php">Home</a></li>
 			</ul>';
 	} else {
+		if($_SESSION['login']=="admin"){
+			$conta = 'admin.php';
+		}else{
+			$conta = 'conta.php';
+		}
+
 		echo '<ul>
 				<li><a href="functions.php?logout=1">Logout</a></li>
-				<li><a href="conta.php">Minha Conta</a></li>
+				<li><a href="'.$conta.'">Minha Conta</a></li>
 				<li><a href="index.php">Home</a></li>
 				<li><p class="text">Bem-Vindo ' . $_SESSION["login"] . '</p></li>
 			</ul>';
@@ -221,7 +227,7 @@ function deletecurso(){
 
 	$sql = "DELETE FROM tb_cursos WHERE idcurso = $delete";
 
-	if ($conn->query($sql) === TRUE) {
+	if ($conn->query($sql) == TRUE) {
 		header('location: admin.php');
 	} else {
 		echo "Error deleting record: " . $conn->error;

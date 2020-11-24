@@ -1,8 +1,3 @@
-<?php
-require_once('functions.php');
-?>
-
-
 <!DOCTYPE html>
 <html lang="Pt-br">
 <meta charset="utf-8" />
@@ -64,7 +59,7 @@ if (count($_POST) != 0) {
         $conn = connect();
 
         $query = $conn->prepare("INSERT INTO tb_users (login,senha,nome,email,fone,nasc) VALUES (?,?,?,?,?,?)");
-        $query->bind_param("ssssss", $nome, $login, $senha, $email, $fone, $nasc);
+        $query->bind_param("ssssss", $login, $senha, $nome, $email, $fone, $nasc);
         $query->execute();
 
         header('location:login.php?sucess=1');

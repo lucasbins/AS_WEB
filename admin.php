@@ -18,6 +18,7 @@ require_once('functions.php');
     <script language="JavaScript" type="text/javascript">
         function checkDelete() {
             return confirm('Tem Certeza?');
+            <?php deletecurso(); ?>
         }
     </script>
 </head>
@@ -29,10 +30,17 @@ require_once('functions.php');
                 <h1 style="float: left;">Cursos PHP</h1>
                 <ul>
                     <li><a href="functions.php?logout=1">Logout</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="addcurso.php">Adicionar Curso</a></li>
                 </ul>
             </div>
         </header>
         <main>
+            <?php if (isset($_GET['sucess'])) {
+                echo '<div class="alert alert-primary" role="alert" style="width: 400px;margin: auto;">
+                        Cadastrado com Sucesso!
+                        </div>';
+            } ?>
             <div class="mx-auto" style="width:80%">
                 <h1 class="display-4" style="color:indigo;">Cursos Inscritos</h1>
                 <table class="table table-striped">
@@ -48,35 +56,14 @@ require_once('functions.php');
                     <tbody>
                         <?php table_curso(); ?>
                     </tbody>
-
                 </table>
+                <a href="addcurso.php" class="btn btn-primary" style="background: indigo; border: none;">Adicionar Curso</a>
             </div>
         </main>
         <footer class="container-fluid">
             <h5>COPYRIGHT Lucas Bins - Avaliação Semestral - Programação WEB - ULBRA 2020</h5>
         </footer>
     </div>
-    <!--INICIO DO MODAL
-    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deletar</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Você tem certeza disso?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" onclick="document.write('<?php deletecurso() ?>');">Deletar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    FIM DO MODAL-->
 </body>
 
 </html>
