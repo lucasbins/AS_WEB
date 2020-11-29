@@ -15,9 +15,9 @@ require_once('functions.php');
 </head>
 
 <body>
+    <img src="assets\logo.png" style="height:5rem; float:left;position:absolute;left:8rem;">
     <header>
         <div>
-            <h1 style="float: left;">Cursos PHP</h1>
             <?php menu(); ?>
         </div>
     </header>
@@ -27,7 +27,6 @@ require_once('functions.php');
             <div style="background:white; border-radius:1rem;padding:3rem;">
                 <?php geraconta(); ?>
             </div>
-            <h1 class="display-4" style="color:indigo;">Cursos Inscritos</h1>
             <?php geracardconta(); ?>
         </div>
     </main>

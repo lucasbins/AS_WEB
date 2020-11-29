@@ -33,8 +33,7 @@
 		header('location: index.php');
 	}
 
-function geracard()
-{
+function geracard(){
 
 	$conn = connect();
 
@@ -78,8 +77,7 @@ function inscricao($idcurso){
 	
 }
 
-function menu()
-{
+function menu(){
 
 	if (!isset($_SESSION['login'])) {
 		echo '<ul>
@@ -88,17 +86,20 @@ function menu()
 			</ul>';
 	} else {
 		if($_SESSION['login']=="admin"){
-			$conta = 'admin.php';
-		}else{
-			$conta = 'conta.php';
-		}
-
-		echo '<ul>
+			echo '<ul>
 				<li><a href="functions.php?logout=1">Logout</a></li>
-				<li><a href="'.$conta.'">Minha Conta</a></li>
+				<li><a href="admin.php">Administração</a></li>
 				<li><a href="index.php">Home</a></li>
 				<li><p class="text">Bem-Vindo ' . $_SESSION["login"] . '</p></li>
 			</ul>';
+		}else{
+			echo '<ul>
+				<li><a href="functions.php?logout=1">Logout</a></li>
+				<li><a href="conta.php">Minha Conta</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><p class="text">Bem-Vindo ' . $_SESSION["login"] . '</p></li>
+			</ul>';
+		}
 	}
 }
 
@@ -111,8 +112,7 @@ function connect(){
 	return $conn;
 }
 
-function geracurso()
-{
+function geracurso(){
 
 	if (!isset($_SESSION['login'])) {
 		echo '<p>Voce precisa estar logado</p>';
@@ -174,13 +174,17 @@ function geracardconta(){
 	$iduser = $_SESSION['idusuario'];
 
 	$result = $conn->query("SELECT * FROM tb_cursos INNER JOIN tb_user_curso ON fk_curso = idcurso WHERE fk_user = $iduser");
-
+	
 	if(mysqli_num_rows($result)>0){
+		$count = 0;
+		echo '<h1 class="display-4" style="color:indigo;">Cursos Inscritos</h1>';
 		while ($row = mysqli_fetch_assoc($result)) {
-			echo 	'<div class="card mb-3" style="height: 10rem";">
+			if($row["concluido"]==0){
+				echo
+				'<div class="card mb-3" style="height: 10rem";">
   					<div class="row no-gutters">
     					<div class="col-md-4">
-      						<img src="assets/' . $row["img"] . '" class="card-img" style="width:15rem; padding: 2rem;">
+      						<img src="assets/' . $row["img"] . '" class="card-img" style="max-height:10rem;max-width:15rem; padding: 1rem;">
     					</div>
     					<div class="card-body" style="position:absolute;left:15rem;">
         					<h5 class="card-title">' . $row["nomecurso"] . '</h5>
@@ -188,13 +192,45 @@ function geracardconta(){
       					</div>	
 					</div>
 					<a href="curso.php?curso=' . $row["idcurso"] . '"class="btn btn-primary" style="right:2rem;bottom:6rem;position: absolute;background: indigo; border: none;">Continuar</a>
-					<a href="curso.php?curso=' . $row["idcurso"] . '"class="btn btn-primary" style="right:2rem;bottom:2rem;position: absolute;background: indigo; border: none;">Encerrar Curso</a>
+					<a href="certificado.php?curso=' . $row["idcurso"] . '"class="btn btn-primary" style="right:2rem;bottom:2rem;position: absolute;background: indigo; border: none;">Encerrar Curso</a>
 				</div>';
+				$count++;
+			}	
 		}
-	}else{
-		echo 	'<div class="alert alert-light" role="alert">Você nao possui nenhum curso cadastrado :(</div>';
+		if($count==0){
+			echo 	'<div class="alert alert-light" role="alert">Você nao possui nenhum curso inscrito :(</div>';
+		}
 	}
-	
+
+	$result = $conn->query("SELECT * FROM tb_cursos INNER JOIN tb_user_curso ON fk_curso = idcurso WHERE fk_user = $iduser");
+
+	if (mysqli_num_rows($result) > 0) {
+		$count = 0;
+		echo '<h1 class="display-4" style="color:indigo;">Cursos Concluidos</h1>';
+		while ($row = mysqli_fetch_assoc($result)) {
+			if ($row["concluido"] == 1) {
+				echo
+					'<div class="card mb-3" style="height: 10rem";">
+  					<div class="row no-gutters">
+    					<div class="col-md-4">
+      						<img src="assets/' . $row["img"] . '" class="card-img" style="max-height:10rem;max-width:15rem; padding: 1rem;">
+    					</div>
+    					<div class="card-body" style="position:absolute;left:15rem;">
+        					<h5 class="card-title">' . $row["nomecurso"] . '</h5>
+        					<p class="card-text">' . $row["descriçao"] . '</p>
+      					</div>	
+					</div>
+					
+					<a href="certificado.php?curso=' . $row["idcurso"] . '"class="btn btn-primary" style="right:2rem;bottom:2rem;position: absolute;background: indigo; border: none;">Certificado</a>
+				</div>';
+				$count++;
+			}		
+		}
+		if ($count == 0) {
+			echo 	'<div class="alert alert-light" role="alert">Você nao possui nenhum curso concluido :(</div>';
+		}
+		
+	} 	
 }
 
 function table_curso(){

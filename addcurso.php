@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">URL</label>
-                        <input class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=" name="URL">
+                        <input class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=" name="url">
                     </div>
 
                     <div class="form-group">

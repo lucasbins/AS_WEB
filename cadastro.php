@@ -1,3 +1,7 @@
+<?php
+require_once('functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="Pt-br">
 <meta charset="utf-8" />

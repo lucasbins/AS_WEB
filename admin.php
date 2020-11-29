@@ -25,9 +25,9 @@ require_once('functions.php');
 
 <body>
     <div>
+        <img src="assets\logo.png" style="height:5rem; float:left;position:absolute;left:8rem;">
         <header>
             <div>
-                <h1 style="float: left;">Cursos PHP</h1>
                 <ul>
                     <li><a href="functions.php?logout=1">Logout</a></li>
                     <li><a href="index.php">Home</a></li>

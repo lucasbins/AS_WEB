@@ -17,9 +17,9 @@ require_once('functions.php');
 
 <body>
     <div>
+        <img src="assets\logo.png" style="height:5rem; float:left;position:absolute;left:8rem;">
         <header>
             <div>
-                <h1 style="float: left;">Cursos PHP</h1>
                 <?php menu(); ?>
             </div>
         </header>

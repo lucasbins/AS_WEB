@@ -8,12 +8,14 @@
     <link rel="stylesheet" type="text/css" href="css/Style.css">
 </head>
 
-<body style="background: indigo;"><?php if (isset($_GET['sucess'])) {
-                                            echo '<div class="alert alert-primary" role="alert" style="width: 400px;margin: auto;">
-                        Usuário cadastrado com sucesso
-                        </div>';
-                                        } ?>
-    <div style="width: 500px; margin: auto;padding: 25px;margin-top: 100px;">
+<body style="background: indigo;">
+    <?php if (isset($_GET['sucess'])) {
+        echo '<div class="alert alert-primary" role="alert" style="width: 400px;margin: auto;">Usuário cadastrado com sucesso</div>';
+    }
+    ?>
+
+    <div style="width: 500px; margin: auto;margin-top: 100px;">
+        <img src="assets\logo.png" style="width:500px;">
         <form method="POST" action="functions.php" id="login">
             <label for="login">Usuário</label>
             <input type="text" class="form-control" name="login">
@@ -28,8 +30,10 @@
             } ?>
             <br>
             <a class="btn btn-primary" href="cadastro.php" role="button" id="button">Cadastre-se</a>
+            <a class="btn btn-primary" href="index.php" role="button" id="button">Voltar</a>
             <button type="submit" value="entrar" class="btn btn-primary" style="float:right;">Login</button>
         </form>
     </div>
 </body>
+
 </html>
