@@ -40,7 +40,7 @@ function geracard(){
 	$result = $conn->query("SELECT * FROM tb_cursos");
 
 	while ($row = mysqli_fetch_assoc($result)) {
-		echo '<div class="card" style="min-width: 12rem; max-width: 15rem;padding:1rem; ">
+		echo '<div class="card" style="min-width: 12rem; max-width: 15rem;padding:1rem;height:25rem; ">
                     <img src="assets/' . $row["img"] . '" class="card-imagem" alt="'.$row["descriçao"].'" style="max-height:10rem;max-width:18rem;"">
                     <div class="card-body">
                         <h5 class="card-title">' . $row["nomecurso"] . '</h5>
@@ -270,4 +270,25 @@ function deletecurso(){
 	}
 }
 
+function relatorio(){
+	$conn = connect();
+
+	$count = $conn->query("SELECT COUNT(idusuario) as total FROM tb_users");
+	$users = mysqli_fetch_assoc($count);
+
+	$totalu = $users["total"]-1;
+
+	$count = $conn->query("SELECT COUNT(idcurso) as total FROM tb_cursos");
+	$cursos = mysqli_fetch_assoc($count);
+
+	$count = $conn->query("SELECT COUNT(idusercurso) as total FROM tb_user_curso");
+	$inscricoes = mysqli_fetch_assoc($count);
+
+	echo '	<tr>
+                <td>' .$totalu.'</td>
+                <td>' . $cursos["total"] . '</td>
+                <td>' . $inscricoes["total"] . '</td>
+			</tr>';
+
+}
 ?>

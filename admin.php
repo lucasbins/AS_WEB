@@ -58,6 +58,21 @@ require_once('functions.php');
                     </tbody>
                 </table>
                 <a href="addcurso.php" class="btn btn-primary" style="background: indigo; border: none;">Adicionar Curso</a>
+                <br><br>
+                <hr class="hr3">
+                <h1 class="display-4" style="color:indigo;">Relatorio</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuarios</th>
+                            <th scope="col">Cursos</th>
+                            <th scope="col">Inscrições</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php relatorio(); ?>
+                    </tbody>
+                </table>
             </div>
         </main>
         <footer class="container-fluid">
