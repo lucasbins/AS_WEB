@@ -14,11 +14,12 @@
 
 <body>
     <div>
-        <header>
+        <header style="height: 5rem;">
             <div>
                 <h1 style="float: left;">Cursos PHP</h1>
                 <ul>
                     <li><a href="functions.php?logout=1">Logout</a></li>
+                    <li><a href="admin.php">Voltar</a></li>
                 </ul>
             </div>
         </header>

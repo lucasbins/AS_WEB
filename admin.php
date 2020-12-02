@@ -26,7 +26,7 @@ require_once('functions.php');
 <body>
     <div>
         <img src="assets\logo.png" style="height:5rem; float:left;position:absolute;left:8rem;">
-        <header>
+        <header style="height: 5rem;">
             <div>
                 <ul>
                     <li><a href="functions.php?logout=1">Logout</a></li>

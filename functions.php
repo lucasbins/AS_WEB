@@ -264,6 +264,8 @@ function deletecurso(){
 	$sql = "DELETE FROM tb_cursos WHERE idcurso = $delete";
 
 	if ($conn->query($sql) == TRUE) {
+		$sql2 = "DELETE FROM tb_user_curso WHERE idcurso = $delete";
+		$conn->query($sql2);
 		header('location: admin.php');
 	} else {
 		echo "Error deleting record: " . $conn->error;
