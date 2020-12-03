@@ -24,14 +24,9 @@ require_once('functions.php');
             </div>
         </header>
         <main>
-            <div id="slider">
-                <figure>
-                    <a href="curso.php?curso=1"><img src="assets\1.png"></a>
-                    <a href="curso.php?curso=2"><img src="assets\2.png"></a>
-                    <a href="curso.php?curso=3"><img src="assets\3.png"></a>
-                    <a href=""><img src="assets\4.png"></a>
-                    <a href=""><img src="assets\1.png"></a>
-                </figure>
+            <div class="container" style="width:80%; margin:auto;">
+                <h1 class="display-4" style="position: absolute;">Bem-vindos</h1>
+                <img src="assets\logo2.png" style="top:0rem;margin:auto;">
             </div>
             <!--Começo dos cards-->
             <div class="container-deck">
