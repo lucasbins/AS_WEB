@@ -108,8 +108,6 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")) {
     }else{
         header('location:addcurso.php?error=1');
     }
-}else{
-    header('location:addcurso.php?error=1');
 }
 
 ?>
