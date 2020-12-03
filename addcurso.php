@@ -75,35 +75,41 @@
 <?php
 if (($_SERVER["REQUEST_METHOD"] == "POST")) {
 
-    $nome = $_POST['nome'];
-    $temp = $_POST['tempo'];
-    $url = $_POST['url'];
-    $descricao = $_POST['descricao'];
-    $file = $_FILES["fileupload"];
-    $arquivo = $file["name"];
+    if($_POST['url'] != '' ){
+        $nome = $_POST['nome'];
+        $temp = $_POST['tempo'];
+        $url = $_POST['url'];
+        $descricao = $_POST['descricao'];
+        $file = $_FILES["fileupload"];
+        $arquivo = $file["name"];
 
-    $dirUploads = "assets";
-    if (!is_dir($dirUploads)) {
+        $dirUploads = "assets";
+        if (!is_dir($dirUploads)) {
 
-        mkdir($dirUploads);
+            mkdir($dirUploads);
+        }
+
+        if (move_uploaded_file($file["tmp_name"], $dirUploads . DIRECTORY_SEPARATOR . $file["name"])) {
+            echo "UPLOAD realizado dom sucesso!";
+        } else {
+            throw new Exception("Não foi possível realizar o upload.");
+        }
+
+        $conn = new mysqli("localhost", "root", "", "webcursos");
+
+        if ($conn->connect_error)
+            echo "Error: " . $conn->connect_error;
+
+        $query = $conn->prepare("INSERT INTO tb_cursos (nomecurso,tempodecurso,url,img,descriçao) VALUES (?,?,?,?,?)");
+        $query->bind_param("sssss", $nome, $temp, $url, $arquivo, $descricao);
+        $query->execute();
+
+        header('location: admin.php?sucess=1');
+    }else{
+        header('location:addcurso.php?error=1');
     }
-
-    if (move_uploaded_file($file["tmp_name"], $dirUploads . DIRECTORY_SEPARATOR . $file["name"])) {
-        echo "UPLOAD realizado dom sucesso!";
-    } else {
-        throw new Exception("Não foi possível realizar o upload.");
-    }
-
-    $conn = new mysqli("localhost", "root", "", "webcursos");
-
-    if ($conn->connect_error)
-        echo "Error: " . $conn->connect_error;
-
-    $query = $conn->prepare("INSERT INTO tb_cursos (nomecurso,tempodecurso,url,img,descriçao) VALUES (?,?,?,?,?)");
-    $query->bind_param("sssss", $nome, $temp, $url, $arquivo, $descricao);
-    $query->execute();
-
-    header('location: admin.php?sucess=1');
-} else
+}else{
+    header('location:addcurso.php?error=1');
+}
 
 ?>
